@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
+#define BROWSER "librewolf"
 
 /* appearance */
 static unsigned int borderpx = 2; /* border pixel of windows */
@@ -57,30 +57,30 @@ static Sp scratchpads[] = {
     {"spcalc", spcmd2},
 };
 
-
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	*/
-	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-	{ "Gimp",     	     NULL,       NULL,        	    1 << 8,       0,           0,         0,        -1 },
-	{ "Nextcloud",       NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
-	{ NULL,     	     NULL,       "KeePassXC", 	    1 << 8,       0,           0,         0,        -1 },
-	{ NULL,              NULL,       "RaySession", 	    1 << 7,       0,           0,         0,        -1 },
-	{ "calfjackhost",    NULL,       NULL,       	    1 << 7,       0,           0,         0,        -1 },
-	{ "Discord",         NULL,       NULL,       	    1 << 6,       0,           0,         0,        -1 },
-	{ "TelegramDesktop", NULL,       NULL,        	    1 << 6,       0,           0,         0,        -1 },
-	{ "Thunderbird",     NULL,       NULL,              1 << 4,       0,           0,         0,        -1 },
-	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
-	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
-	{ TERMCLASS,      "floatterm", NULL,       	    0,       1,           1,         0,        -1 },
-	{ TERMCLASS,      "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 },
-	{ TERMCLASS,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
-	{ TERMCLASS,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
+    /* xprop(1):
+     *	WM_CLASS(STRING) = instance, class
+     *	WM_NAME(STRING) = title
+     */
+    /* class    instance      title       	 tags mask    isfloating
+       isterminal  noswallow  monitor */
+    {"Gimp", NULL, NULL, 1 << 8, 0, 0, 0, -1},
+    {"Nextcloud", NULL, NULL, 1 << 8, 0, 0, 0, -1},
+    {NULL, NULL, "KeePassXC", 1 << 8, 0, 0, 0, -1},
+    {NULL, NULL, "RaySession", 1 << 7, 0, 0, 0, -1},
+    {"calfjackhost", NULL, NULL, 1 << 7, 0, 0, 0, -1},
+    {"Discord", NULL, NULL, 1 << 6, 0, 0, 0, -1},
+    {"TelegramDesktop", NULL, NULL, 1 << 6, 0, 0, 0, -1},
+    {"Thunderbird", NULL, NULL, 1 << 4, 0, 0, 0, -1},
+    {TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
+    {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1},
+    {TERMCLASS, "floatterm", NULL, 0, 1, 1, 0, -1},
+    {TERMCLASS, "bg", NULL, 1 << 7, 0, 1, 0, -1},
+    {TERMCLASS, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
+    {TERMCLASS, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
 };
 
 /* layout(s) */
@@ -168,7 +168,8 @@ static Key keys[] = {
     STACKKEYS(MODKEY, focus) STACKKEYS(MODKEY | ShiftMask, push)
     /* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
     {MODKEY, XK_grave, spawn, {.v = (const char *[]){"dmenuunicode", NULL}}},
-    /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("")
+     * },
      */
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
@@ -193,7 +194,8 @@ static Key keys[] = {
      {.v = (const char *[]){"sysact", NULL}}},
 
     {MODKEY, XK_Tab, view, {0}},
-    /* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_q, killclient, {0}},
     {MODKEY | ShiftMask, XK_q, spawn, {.v = (const char *[]){"sysact", NULL}}},
@@ -247,13 +249,15 @@ static Key keys[] = {
      spawn,
      {.v = (const char *[]){"mpc", "seek", "+60", NULL}}},
     {MODKEY, XK_backslash, view, {0}},
-    /* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("")
+     * },
      */
 
     {MODKEY, XK_a, togglegaps, {0}},
     {MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
     {MODKEY, XK_s, togglesticky, {0}},
-    /* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_d, spawn, {.v = (const char *[]){"dmenu_run", NULL}}},
     {MODKEY | ShiftMask,
@@ -270,27 +274,32 @@ static Key keys[] = {
     {MODKEY, XK_semicolon, shiftview, {.i = 1}},
     {MODKEY | ShiftMask, XK_semicolon, shifttag, {.i = 1}},
     {MODKEY, XK_apostrophe, togglescratch, {.ui = 1}},
-    /* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("")
+     * },
      */
     {MODKEY | ShiftMask, XK_apostrophe, togglesmartgaps, {0}},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
 
     {MODKEY, XK_z, incrgaps, {.i = +3}},
-    /* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_x, incrgaps, {.i = -3}},
-    /* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY,
      XK_c,
      spawn,
      {.v = (const char *[]){TERMINAL, "-e", "profanity", NULL}}},
-    /* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("")
+     * },
      */
     /* V is automatically bound above in STACKKEYS */
     {MODKEY, XK_b, togglebar, {0}},
-    /* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY,
      XK_n,
@@ -394,8 +403,8 @@ static Key keys[] = {
      {.v = (const char *[]){TERMINAL, "-e", "ncmpcpp", NULL}}},
     {0, XF86XK_AudioMicMute, spawn,
      SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle")},
-    /* { 0, XF86XK_PowerOff,		spawn,		{.v = (const char*[]){ "sysact", NULL
-       } } }, */
+    /* { 0, XF86XK_PowerOff,		spawn,		{.v = (const char*[]){ "sysact",
+       NULL } } }, */
     {0,
      XF86XK_Calculator,
      spawn,
@@ -505,4 +514,3 @@ static Button buttons[] = {
     {ClkTagBar, 0, Button5, shiftview, {.i = 1}},
     {ClkRootWin, 0, Button2, togglebar, {0}},
 };
-
