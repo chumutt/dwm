@@ -3,32 +3,40 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "librewolf"
+#define BROWSER "firefox"
 
 /* appearance */
 static unsigned int borderpx = 2; /* border pixel of windows */
 static unsigned int snap = 32;    /* snap pixel */
-static unsigned int gappih = 15;  /* horiz inner gap between windows */
-static unsigned int gappiv = 5;   /* vert inner gap between windows */
+/* static unsigned int gappih    = 20;       /1* horiz inner gap between windows
+ * *1/ */
+/* static unsigned int gappiv    = 10;       /1* vert inner gap between windows
+ * *1/ */
+/* static unsigned int gappoh    = 10;       /1* horiz outer gap between windows
+ * and screen edge *1/ */
+/* static unsigned int gappov    = 30;       /1* vert outer gap between windows
+ * and screen edge *1/ */
+static unsigned int gappih = 0; /* horiz inner gap between windows */
+static unsigned int gappiv = 0; /* vert inner gap between windows */
 static unsigned int gappoh =
-    5; /* horiz outer gap between windows and screen edge */
+    0; /* horiz outer gap between windows and screen edge */
 static unsigned int gappov =
-    06; /* vert outer gap between windows and screen edge */
+    0; /* vert outer gap between windows and screen edge */
 static int swallowfloating =
     0; /* 1 means swallow floating windows by default */
 static int smartgaps =
-    0;                  /* 1 means no outer gap when there is only one window */
+    1;                  /* 1 means no outer gap when there is only one window */
 static int showbar = 1; /* 0 means no bar */
 static int topbar = 1;  /* 0 means bottom bar */
 static char *fonts[] = {
-    "monospace:size=10",
+    "Fira Mono:size=10",
     "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true"};
-static char normbgcolor[] = "#222222";
-static char normbordercolor[] = "#444444";
+static char normbgcolor[] = "#282C34";
+static char normbordercolor[] = "#282C34";
 static char normfgcolor[] = "#bbbbbb";
 static char selfgcolor[] = "#eeeeee";
-static char selbordercolor[] = "#770000";
-static char selbgcolor[] = "#005577";
+static char selbordercolor[] = "#ff6c6b";
+static char selbgcolor[] = "#282c34";
 static char *colors[][3] = {
     /*               fg           bg           border   */
     [SchemeNorm] = {normfgcolor, normbgcolor, normbordercolor},
@@ -49,31 +57,36 @@ static Sp scratchpads[] = {
     {"spcalc", spcmd2},
 };
 
+
 /* tagging */
-static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-    /* xprop(1):
-     *	WM_CLASS(STRING) = instance, class
-     *	WM_NAME(STRING) = title
-     */
-    /* class    instance      title       	 tags mask    isfloating
-       isterminal  noswallow  monitor */
-    {"Gimp", NULL, NULL, 1 << 8, 0, 0, 0, -1},
-    {TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-    {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1},
-    {TERMCLASS, "floatterm", NULL, 0, 1, 1, 0, -1},
-    {TERMCLASS, "bg", NULL, 1 << 7, 0, 1, 0, -1},
-    {TERMCLASS, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
-    {TERMCLASS, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
+	/* xprop(1):
+	 *	WM_CLASS(STRING) = instance, class
+	 *	WM_NAME(STRING) = title
+	*/
+	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
+	{ "Gimp",     	     NULL,       NULL,        	    1 << 8,       0,           0,         0,        -1 },
+	{ "Nextcloud",       NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
+	{ NULL,     	     NULL,       "KeePassXC", 	    1 << 8,       0,           0,         0,        -1 },
+	{ NULL,              NULL,       "RaySession", 	    1 << 7,       0,           0,         0,        -1 },
+	{ "calfjackhost",    NULL,       NULL,       	    1 << 7,       0,           0,         0,        -1 },
+	{ "Discord",         NULL,       NULL,       	    1 << 6,       0,           0,         0,        -1 },
+	{ "TelegramDesktop", NULL,       NULL,        	    1 << 6,       0,           0,         0,        -1 },
+	{ "Thunderbird",     NULL,       NULL,              1 << 4,       0,           0,         0,        -1 },
+	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
+	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
+	{ TERMCLASS,      "floatterm", NULL,       	    0,       1,           1,         0,        -1 },
+	{ TERMCLASS,      "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 },
+	{ TERMCLASS,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
+	{ TERMCLASS,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
 };
 
 /* layout(s) */
 static float mfact = 0.55;  /* factor of master area size [0.05..0.95] */
 static int nmaster = 1;     /* number of clients in master area */
 static int resizehints = 0; /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen =
-    1; /* 1 will force focus on the fullscreen window */
 #define FORCE_VSPLIT                                                           \
   1 /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
@@ -150,7 +163,7 @@ ResourcePref resources[] = {
 #include "shiftview.c"
 #include <X11/XF86keysym.h>
 
-static const Key keys[] = {
+static Key keys[] = {
     /* modifier                     key        function        argument */
     STACKKEYS(MODKEY, focus) STACKKEYS(MODKEY | ShiftMask, push)
     /* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
@@ -190,8 +203,7 @@ static const Key keys[] = {
      spawn,
      {.v = (const char *[]){TERMINAL, "-e", "sudo", "nmtui", NULL}}},
     {MODKEY, XK_e, spawn,
-     SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook "
-                    "2>/dev/null")},
+     SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook")},
     {MODKEY | ShiftMask, XK_e, spawn,
      SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile "
                     "~/.config/abook/addressbook")},
@@ -327,7 +339,7 @@ static const Key keys[] = {
     {MODKEY, XK_F5, xrdb, {.v = NULL}},
     {MODKEY, XK_F6, spawn, {.v = (const char *[]){"torwrap", NULL}}},
     {MODKEY, XK_F7, spawn, {.v = (const char *[]){"td-toggle", NULL}}},
-    {MODKEY, XK_F8, spawn, {.v = (const char *[]){"mailsync", NULL}}},
+    {MODKEY, XK_F8, spawn, {.v = (const char *[]){"mw", "-Y", NULL}}},
     {MODKEY, XK_F9, spawn, {.v = (const char *[]){"mounter", NULL}}},
     {MODKEY, XK_F10, spawn, {.v = (const char *[]){"unmounter", NULL}}},
     {MODKEY, XK_F11, spawn,
@@ -355,11 +367,11 @@ static const Key keys[] = {
      SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof "
            "dwmblocks)")},
     {0, XF86XK_AudioRaiseVolume, spawn,
-     SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume "
-           "@DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)")},
+     SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof "
+           "dwmblocks)")},
     {0, XF86XK_AudioLowerVolume, spawn,
-     SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume "
-           "@DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof dwmblocks)")},
+     SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof "
+           "dwmblocks)")},
     {0, XF86XK_AudioPrev, spawn, {.v = (const char *[]){"mpc", "prev", NULL}}},
     {0, XF86XK_AudioNext, spawn, {.v = (const char *[]){"mpc", "next", NULL}}},
     {0,
@@ -466,7 +478,7 @@ static const Key keys[] = {
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
  * ClkClientWin, or ClkRootWin */
-static const Button buttons[] = {
+static Button buttons[] = {
 /* click                event mask      button          function        argument
  */
 #ifndef __OpenBSD__
@@ -493,3 +505,4 @@ static const Button buttons[] = {
     {ClkTagBar, 0, Button5, shiftview, {.i = 1}},
     {ClkRootWin, 0, Button2, togglebar, {0}},
 };
+
