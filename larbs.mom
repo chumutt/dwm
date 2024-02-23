@@ -146,7 +146,7 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .ITEM
 \f(CWMod+I\fP \(en Center and float the master window
 .ITEM
-\f(CWMod+o/O\fP \(en Increase/decrease the number of master windows
+\f(CWMod+o/O\fP \(en Decrease/increase the number of master windows
 .LIST OFF
 .HEADING 2 "Basic Programs"
 .LI
