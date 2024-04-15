@@ -51,21 +51,21 @@ static const Rule rules[] = {
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{"Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
-	{"Krita",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
-	{"Inkscape",   NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
-    {"Nextcloud", NULL,       NULL,             1 << 8,       0,           0,         0,        -1 },
-    {NULL, NULL, "KeePassXC",                   1 << 8,       0,           0,         0,        -1 },
-    {NULL, NULL, "RaySession",                  1 << 7,       0,           0,         0,        -1 },
-    {"calfjackhost", NULL, NULL,                1 << 7,       0,           0,         0,        -1 },
-    {"Discord", NULL, NULL,                     1 << 6,       0,           0,         0,        -1 },
-    {"TelegramDesktop", NULL, NULL,             1 << 6,       0,           0,         0,        -1 },
-    {"Thunderbird", NULL, NULL,                 1 << 4,       0,           0,         0,        -1 },
-	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
-	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
-	{ TERMCLASS,  "floatterm", NULL,       	    0,            1,           1,         0,        -1 },
-	{ TERMCLASS,  "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 },
-	{ TERMCLASS,  "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
-	{ TERMCLASS,  "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
+	/* {"Krita",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
+	/* {"Inkscape",   NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
+  /*   {"Nextcloud", NULL,       NULL,             1 << 8,       0,           0,         0,        -1 }, */
+  /*   {NULL, NULL, "KeePassXC",                   1 << 8,       0,           0,         0,        -1 }, */
+  /*   {NULL, NULL, "RaySession",                  1 << 7,       0,           0,         0,        -1 }, */
+  /*   {"calfjackhost", NULL, NULL,                1 << 7,       0,           0,         0,        -1 }, */
+  /*   {"Discord", NULL, NULL,                     1 << 6,       0,           0,         0,        -1 }, */
+  /*   {"TelegramDesktop", NULL, NULL,             1 << 6,       0,           0,         0,        -1 }, */
+  /*   {"Thunderbird", NULL, NULL,                 1 << 4,       0,           0,         0,        -1 }, */
+	/* { TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 }, */
+	/* { NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 }, */
+	/* { TERMCLASS,  "floatterm", NULL,       	    0,            1,           1,         0,        -1 }, */
+	/* { TERMCLASS,  "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 }, */
+	/* { TERMCLASS,  "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 }, */
+	/* { TERMCLASS,  "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 }, */
 };
 
 /* layout(s) */
