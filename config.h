@@ -50,13 +50,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-	{"Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
+  /*   {"Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
 	/* {"Krita",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
 	/* {"Inkscape",   NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
-  /*   {"Nextcloud", NULL,       NULL,             1 << 8,       0,           0,         0,        -1 }, */
-  /*   {NULL, NULL, "KeePassXC",                   1 << 8,       0,           0,         0,        -1 }, */
-  /*   {NULL, NULL, "RaySession",                  1 << 7,       0,           0,         0,        -1 }, */
-  /*   {"calfjackhost", NULL, NULL,                1 << 7,       0,           0,         0,        -1 }, */
+    {"Nextcloud", NULL,       NULL,             1 << 8,       0,           0,         0,        -1 },
+    {NULL, NULL, "KeePassXC",                   1 << 8,       0,           0,         0,        -1 },
+    {NULL, NULL, "RaySession",                  1 << 7,       0,           0,         0,        -1 },
+    {"calfjackhost", NULL, NULL,                1 << 7,       0,           0,         0,        -1 },
   /*   {"Discord", NULL, NULL,                     1 << 6,       0,           0,         0,        -1 }, */
   /*   {"TelegramDesktop", NULL, NULL,             1 << 6,       0,           0,         0,        -1 }, */
   /*   {"Thunderbird", NULL, NULL,                 1 << 4,       0,           0,         0,        -1 }, */
@@ -174,8 +174,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_q,		spawn,		{.v = (const char*[]){ "sysact", NULL } } },
 	{ MODKEY,			XK_w,		spawn,		{.v = (const char*[]){ BROWSER, NULL } } },
 	{ MODKEY|ShiftMask,		XK_w,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } },
-	{ MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook 2>/dev/null") },
-	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
+	/* { MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook 2>/dev/null") }, */
+	/* { MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
+	{ MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " ez") },
+	{ MODKEY|ShiftMask,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook 2>/dev/null") },
+	{ MODKEY|ShiftMask|ControlMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
 	{ MODKEY,			XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "lfub", NULL } } },
 	{ MODKEY|ShiftMask,		XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
