@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
+#define BROWSER "librewolf"
 
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -50,22 +50,22 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-  /*   {"Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
+	/* {"Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
 	/* {"Krita",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
 	/* {"Inkscape",   NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 }, */
     {"Nextcloud", NULL,       NULL,             1 << 8,       0,           0,         0,        -1 },
     /* {NULL, NULL, "KeePassXC",                   1 << 8,       0,           0,         0,        -1 }, */
     {NULL, NULL, "RaySession",                  1 << 7,       0,           0,         0,        -1 },
     {"calfjackhost", NULL, NULL,                1 << 7,       0,           0,         0,        -1 },
-  /*   {"Discord", NULL, NULL,                     1 << 6,       0,           0,         0,        -1 }, */
-  /*   {"TelegramDesktop", NULL, NULL,             1 << 6,       0,           0,         0,        -1 }, */
-  /*   {"Thunderbird", NULL, NULL,                 1 << 4,       0,           0,         0,        -1 }, */
-	/* { TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 }, */
-	/* { NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 }, */
-	/* { TERMCLASS,  "floatterm", NULL,       	    0,            1,           1,         0,        -1 }, */
-	/* { TERMCLASS,  "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 }, */
-	/* { TERMCLASS,  "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 }, */
-	/* { TERMCLASS,  "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 }, */
+    /* {"Discord", NULL, NULL,                     1 << 6,       0,           0,         0,        -1 }, */
+    /* {"TelegramDesktop", NULL, NULL,             1 << 6,       0,           0,         0,        -1 }, */
+    /* {"Thunderbird", NULL, NULL,                 1 << 4,       0,           0,         0,        -1 }, */
+	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
+	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
+	{ TERMCLASS,  "floatterm", NULL,       	    0,            1,           1,         0,        -1 },
+	{ TERMCLASS,  "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 },
+	{ TERMCLASS,  "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
+	{ TERMCLASS,  "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
 };
 
 /* layout(s) */
@@ -174,9 +174,13 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_q,		spawn,		{.v = (const char*[]){ "sysact", NULL } } },
 	{ MODKEY,			XK_w,		spawn,		{.v = (const char*[]){ BROWSER, NULL } } },
 	{ MODKEY|ShiftMask,		XK_w,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } },
+<<<<<<< HEAD
 	/* { MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook 2>/dev/null") }, */
 	/* { MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
 	{ MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " ez") },
+=======
+	{ MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " emacsclient -nc") },
+>>>>>>> f2949f1191b2c17200c5911d29e3884ef20429e3
 	{ MODKEY|ShiftMask,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook 2>/dev/null") },
 	{ MODKEY|ShiftMask|ControlMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
 	{ MODKEY,			XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "lfub", NULL } } },
